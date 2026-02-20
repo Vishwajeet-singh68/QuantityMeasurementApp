@@ -1,5 +1,0 @@
-package com.QuantityMeasurementApp.feature.uc3genericquantityclassFordryPrinciple;
-
-public enum LengthUnit {
-	INCHES, FEET
-}

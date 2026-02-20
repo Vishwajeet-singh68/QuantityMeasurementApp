@@ -1,5 +1,0 @@
-package com.QuantityMeasurementApp;
-
-public enum LengthUnit {
-	FEET, INCHES
-}
