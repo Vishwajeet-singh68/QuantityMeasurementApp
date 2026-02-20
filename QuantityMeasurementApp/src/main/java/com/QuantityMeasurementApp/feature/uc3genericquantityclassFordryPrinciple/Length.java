@@ -5,7 +5,10 @@ import java.util.Objects;
 public class Length {
 	
 	public enum LengthUnit{
-		FEET(12.0),INCHES(1.0);
+		FEET(12.0),
+		INCHES(1.0),
+		YARDS(36.0),
+		CENTIMETERS(0.393701);
 		
 		private final double conversionFactor;
 		
@@ -26,35 +29,45 @@ public class Length {
 		this.unit = unit;
 	}
 	
-	public double convertToBaseUnit() {
-		double conversionFactor = unit.conversionFactor;
-		return value * conversionFactor;
-	}
-	
-	public boolean compare(Length thatLength) {
-		return this.convertToBaseUnit()==thatLength.convertToBaseUnit();
-	}
+	private double toBaseUnit() {
+        return value * unit.getConversionFactor();
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(unit, value);
-	}
+    public boolean compare(Length other) {
+        if (other == null) return false;
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Length other = (Length) obj;
-		return compare(other);
-	}
+        double a = this.toBaseUnit();
+        double b = other.toBaseUnit();
+
+        // handle floating precision
+        return Math.abs(a - b) < 0.0001;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof Length)) return false;
+        Length other = (Length) obj;
+        return compare(other);
+    }
+
+    @Override
+    public int hashCode() {
+        return Double.hashCode(toBaseUnit());
+    }
 	
-	public static void main(String[] args) {
-		Length l1 = new Length(1.0, LengthUnit.FEET);
-		Length l2 = new Length(12.0, LengthUnit.INCHES);
-		System.out.println("both lengths are: "+l1.equals(l2));
-	}
+    public static void main(String[] args) {
+
+        System.out.println(new Length(1, LengthUnit.YARDS)
+                .equals(new Length(3, LengthUnit.FEET)));   // true
+
+        System.out.println(new Length(1, LengthUnit.YARDS)
+                .equals(new Length(36, LengthUnit.INCHES))); // true
+
+        System.out.println(new Length(1, LengthUnit.CENTIMETERS)
+                .equals(new Length(0.393701, LengthUnit.INCHES))); // true
+
+        System.out.println(new Length(2, LengthUnit.YARDS)
+                .equals(new Length(72, LengthUnit.INCHES))); // true
+    }
 }
