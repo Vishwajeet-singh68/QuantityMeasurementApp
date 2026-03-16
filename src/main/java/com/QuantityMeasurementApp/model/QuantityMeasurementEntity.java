@@ -1,10 +1,7 @@
-package quantitymeasurementapp.model;
-
+package com.QuantityMeasurementApp.model;
 
 import java.util.Objects;
-
-import quantitymeasurementapp.entity.QuantityDTO;
-import quantitymeasurementapp.unit.IMeasurable;
+import com.QuantityMeasurementApp.entity.QuantityDTO;
 
 public class QuantityMeasurementEntity implements java.io.Serializable {
 		private static final long serialVersionUID = 1L;

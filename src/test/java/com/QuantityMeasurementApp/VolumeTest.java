@@ -1,17 +1,22 @@
 package com.QuantityMeasurementApp;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
+
+import com.QuantityMeasurementApp.model.Quantity;
+import com.QuantityMeasurementApp.unit.VolumeUnit;
 
 public class VolumeTest {
 
     @Test
     public void volumeLiterEqualsMilliliters() {
         Quantity<VolumeUnit> liter =
-                new Quantity<>(1, VolumeUnit.LITRE);
+                new Quantity<>(1.0, VolumeUnit.LITRE);
 
         Quantity<VolumeUnit> milliliter =
-                new Quantity<>(1000, VolumeUnit.MILLILITRE);
+                new Quantity<>(1000.0, VolumeUnit.MILLILITRE);
 
         assertTrue(QuantityMeasurementApp.demonstrateEquality(liter, milliliter));
     }
@@ -19,7 +24,7 @@ public class VolumeTest {
     @Test
     public void convertVolumeLitersToMilliliters() {
         Quantity<VolumeUnit> liter =
-                new Quantity<>(1, VolumeUnit.LITRE);
+                new Quantity<>(1.0, VolumeUnit.LITRE);
 
         Quantity<VolumeUnit> result =
                 QuantityMeasurementApp.demonstrateConversion(liter, VolumeUnit.MILLILITRE);
@@ -30,7 +35,7 @@ public class VolumeTest {
     @Test
     public void convertVolumeGallonToLiter() {
         Quantity<VolumeUnit> gallon =
-                new Quantity<>(1, VolumeUnit.GALLON);
+                new Quantity<>(1.0, VolumeUnit.GALLON);
 
         Quantity<VolumeUnit> result =
                 QuantityMeasurementApp.demonstrateConversion(gallon, VolumeUnit.LITRE);
@@ -41,10 +46,10 @@ public class VolumeTest {
     @Test
     public void addVolumeLitersAndMilliliters() {
         Quantity<VolumeUnit> liter =
-                new Quantity<>(1, VolumeUnit.LITRE);
+                new Quantity<>(1.0, VolumeUnit.LITRE);
 
         Quantity<VolumeUnit> milliliter =
-                new Quantity<>(500, VolumeUnit.MILLILITRE);
+                new Quantity<>(500.0, VolumeUnit.MILLILITRE);
 
         Quantity<VolumeUnit> result =
                 QuantityMeasurementApp.demonstrateAddition(liter, milliliter);
@@ -55,10 +60,10 @@ public class VolumeTest {
     @Test
     public void addVolumeLitersAndMillilitersInMilliliters() {
         Quantity<VolumeUnit> liter =
-                new Quantity<>(1, VolumeUnit.LITRE);
+                new Quantity<>(1.0, VolumeUnit.LITRE);
 
         Quantity<VolumeUnit> milliliter =
-                new Quantity<>(500, VolumeUnit.MILLILITRE);
+                new Quantity<>(500.0, VolumeUnit.MILLILITRE);
 
         Quantity<VolumeUnit> result =
                 QuantityMeasurementApp.demonstrateAddition(
@@ -72,10 +77,10 @@ public class VolumeTest {
     @Test
     public void addVolumeLitersAndGallons() {
         Quantity<VolumeUnit> liter =
-                new Quantity<>(1, VolumeUnit.LITRE);
+                new Quantity<>(1.0, VolumeUnit.LITRE);
 
         Quantity<VolumeUnit> gallon =
-                new Quantity<>(1, VolumeUnit.GALLON);
+                new Quantity<>(1.0, VolumeUnit.GALLON);
 
         Quantity<VolumeUnit> result =
                 QuantityMeasurementApp.demonstrateAddition(liter, gallon);
@@ -86,7 +91,7 @@ public class VolumeTest {
     @Test
     public void volumeGallonEqualsLiters() {
         Quantity<VolumeUnit> gallon =
-                new Quantity<>(1, VolumeUnit.GALLON);
+                new Quantity<>(1.0, VolumeUnit.GALLON);
 
         Quantity<VolumeUnit> liter =
                 new Quantity<>(3.78541, VolumeUnit.LITRE);

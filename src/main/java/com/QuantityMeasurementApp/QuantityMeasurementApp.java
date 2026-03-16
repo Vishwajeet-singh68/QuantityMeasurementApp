@@ -1,15 +1,11 @@
-package quantitymeasurementapp;
+package com.QuantityMeasurementApp;
 
-import quantitymeasurementapp.controller.QuantityMeasurementController;
-import quantitymeasurementapp.entity.QuantityDTO;
-import quantitymeasurementapp.model.Quantity;
-import quantitymeasurementapp.reposistory.QuantityMeasurementCacheRepository;
-import quantitymeasurementapp.service.QuantityMeasurementServiceImpl;
-import quantitymeasurementapp.unit.IMeasurable;
-import quantitymeasurementapp.unit.LengthUnit;
-import quantitymeasurementapp.unit.Temperature;
-import quantitymeasurementapp.unit.VolumneUnit;
-import quantitymeasurementapp.unit.WeightUnit;
+import com.QuantityMeasurementApp.controller.QuantityMeasurementController;
+import com.QuantityMeasurementApp.entity.QuantityDTO;
+import com.QuantityMeasurementApp.model.Quantity;
+import com.QuantityMeasurementApp.reposistory.QuantityMeasurementCacheRepository;
+import com.QuantityMeasurementApp.service.QuantityMeasurementServiceImpl;
+import com.QuantityMeasurementApp.unit.IMeasurable;
 
 public class QuantityMeasurementApp {
        

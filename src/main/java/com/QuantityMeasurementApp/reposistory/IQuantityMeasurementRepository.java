@@ -1,9 +1,8 @@
-package quantitymeasurementapp.reposistory;
+package com.QuantityMeasurementApp.reposistory;
 
-import quantitymeasurementapp.model.QuantityMeasurementEntity;
-import java.util.*;
+import java.util.List;
+import com.QuantityMeasurementApp.model.QuantityMeasurementEntity;
 
 public interface IQuantityMeasurementRepository {
-      void save(QuantityMeasurementEntity enity);
-      List<QuantityMeasurementEntity> getAllMeasurement();
+      void save(QuantityMeasurementEntity entity);
 }

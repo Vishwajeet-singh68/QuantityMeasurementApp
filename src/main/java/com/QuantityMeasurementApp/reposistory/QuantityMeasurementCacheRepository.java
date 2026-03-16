@@ -1,4 +1,4 @@
-package quantitymeasurementapp.reposistory;
+package com.QuantityMeasurementApp.reposistory;
 
 import java.io.EOFException;
 import java.io.File;
@@ -10,8 +10,7 @@ import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.util.List;
 
-import quantitymeasurementapp.model.QuantityMeasurementEntity;
-
+import com.QuantityMeasurementApp.model.QuantityMeasurementEntity;
 
 class AppendableObjectOutputStream extends ObjectOutputStream {
 	public AppendableObjectOutputStream(OutputStream out) throws IOException {
@@ -59,14 +58,6 @@ public class QuantityMeasurementCacheRepository implements IQuantityMeasurementR
         quantityMeasurementEntityCache.add(entity);
         // Save entity to disk
         saveToDisk(entity);
-    }
-
-    // Return all stored entities
-    @Override
-    public List<QuantityMeasurementEntity> getAllMeasurement() {
-
-        // Return cached list
-        return quantityMeasurementEntityCache;
     }
 
     // Save entity to file

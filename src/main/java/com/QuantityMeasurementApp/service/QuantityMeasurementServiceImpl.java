@@ -1,17 +1,19 @@
-package quantitymeasurementapp.service;
+package com.QuantityMeasurementApp.service;
+
 import java.util.List;
 import java.util.Objects;
+import com.QuantityMeasurementApp.entity.QuantityDTO;
+import com.QuantityMeasurementApp.model.Quantity;
+import com.QuantityMeasurementApp.model.QuantityMeasurementEntity;
+import com.QuantityMeasurementApp.model.QuantityModel;
+import com.QuantityMeasurementApp.reposistory.IQuantityMeasurementRepository;
+import com.QuantityMeasurementApp.unit.IMeasurable;
+import com.QuantityMeasurementApp.unit.LengthUnit;
+import com.QuantityMeasurementApp.unit.Temperature;
+import com.QuantityMeasurementApp.unit.VolumeUnit;
+import com.QuantityMeasurementApp.unit.WeightUnit;
 
-import quantitymeasurementapp.entity.QuantityDTO;
-import quantitymeasurementapp.model.Quantity;
-import quantitymeasurementapp.model.QuantityMeasurementEntity;
-import quantitymeasurementapp.model.QuantityModel;
-import quantitymeasurementapp.reposistory.*;
-import quantitymeasurementapp.unit.IMeasurable;
-import quantitymeasurementapp.unit.LengthUnit;
-import quantitymeasurementapp.unit.Temperature;
-import quantitymeasurementapp.unit.VolumneUnit;
-import quantitymeasurementapp.unit.WeightUnit;
+
 
 public class QuantityMeasurementServiceImpl implements IQuantityMeasurementService{
 
@@ -24,6 +26,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 	private enum Operation{
 		COMPARISION,CONVERSION,ARITHMETIC;
 	}
+	
 	@Override
 	public boolean compare(QuantityDTO thisQuantityDTO, QuantityDTO thatQuantityDTO) {
 		 QuantityModel<?> q1 = getQuantityInstance(thisQuantityDTO);
@@ -156,7 +159,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
     private QuantityModel<?> getQuantityInstance(QuantityDTO dto){
     	switch(dto.getMeasurementType()) {
     	case "VOLUME":
-    		return new QuantityModel<>(dto.getValue(),VolumneUnit.valueOf(dto.getUnit()));
+    		return new QuantityModel<>(dto.getValue(),VolumeUnit.valueOf(dto.getUnit()));
     	case "WEIGHT":
     		return new QuantityModel<>(dto.getValue(),WeightUnit.valueOf(dto.getUnit()));
     	case "LENGTH":

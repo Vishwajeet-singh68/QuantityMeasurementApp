@@ -1,4 +1,4 @@
-package quantitymeasurementapp.entity;
+package com.QuantityMeasurementApp.entity;
 
 interface IMeasurableUnit{
 	String getUnitName();
