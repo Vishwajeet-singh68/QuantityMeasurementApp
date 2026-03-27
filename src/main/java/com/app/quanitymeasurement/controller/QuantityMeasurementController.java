@@ -1,9 +1,6 @@
 package com.app.quanitymeasurement.controller;
 
-import com.app.quanitymeasurement.model.QuantityDTO;
-import com.app.quanitymeasurement.model.QuantityInputDTO;
-import com.app.quanitymeasurement.model.QuantityMeasurementDTO;
-import com.app.quanitymeasurement.model.OperationType;
+import com.app.quanitymeasurement.model.*;
 import com.app.quanitymeasurement.services.IQuantityMeasurementService;
 
 import io.swagger.v3.oas.annotations.Operation;
@@ -18,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/quantities")
 @Tag(name = "Quantity Measurements", description = "REST API for quantity measurement operations")
@@ -29,27 +27,8 @@ public class QuantityMeasurementController {
         this.service = service;
     }
 
-    @GetMapping("/")
-    public String start(){
-        return "Quantity Measurement App is running";
-    }
-
     // ==================== COMPARE ====================
     @PostMapping("/compare")
-    @Operation(
-            summary = "Compare two quantities",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    content = @Content(examples = {
-                            @ExampleObject(name = "Feet = Inches",
-                                    value = """
-                                    {
-                                      "thisQuantityDTO": {"value":1.0,"unit":"FEET","measurementType":"LengthUnit"},
-                                      "thatQuantityDTO": {"value":12.0,"unit":"INCHES","measurementType":"LengthUnit"}
-                                    }
-                                    """)
-                    })
-            )
-    )
     public ResponseEntity<QuantityMeasurementDTO> performComparison(
             @Valid @RequestBody QuantityInputDTO input) {
 
@@ -62,7 +41,7 @@ public class QuantityMeasurementController {
     @PostMapping("/convert")
     @Operation(summary = "Convert quantity to target unit")
     public ResponseEntity<QuantityMeasurementDTO> performConversion(
-            @Valid @RequestBody QuantityInputDTO input) {
+            @Valid @RequestBody ConversionDTO input) {
 
         return ResponseEntity.ok(
                 service.convert(
@@ -79,7 +58,7 @@ public class QuantityMeasurementController {
             @Valid @RequestBody QuantityInputDTO input) {
 
         return ResponseEntity.ok(
-                service.add(input.getThisQuantityDTO(), input.getThatQuantityDTO())
+                service.add(input.getThisQuantityDTO(), input.getThatQuantityDTO(), input.getTargetQuantityDTO())
         );
     }
 

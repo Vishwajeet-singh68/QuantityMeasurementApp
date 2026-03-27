@@ -53,8 +53,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
     // ====================== ADD ======================
     @Override
-    public QuantityMeasurementDTO add(QuantityDTO q1, QuantityDTO q2) {
-        return performArithmetic(q1, q2, q1, OperationType.ADD, Double::sum);
+    public QuantityMeasurementDTO add(QuantityDTO q1, QuantityDTO q2, QuantityDTO target) {
+        return performArithmetic(q1, q2, target, OperationType.ADD, Double::sum);
     }
 
     // ====================== SUBTRACT ======================
@@ -100,10 +100,10 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
                     m2.convertTo(targetUnit)
             );
 
-            return saveResult(q1, q2, result, targetUnit, operation, false, null);
+            return saveResult(q1, q2, target, result, operation, false, null);
 
         } catch (Exception e) {
-            return saveResult(q1, q2,0, null, operation, true, e.getMessage());
+            return saveResult(q1, q2,target, 0.0, operation, true, e.getMessage());
         }
     }
 
@@ -111,7 +111,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         return new QuantityModel<>(dto.getValue(), getUnit(dto));
     }
 
-    // 🔥 FIXED (no null return)
+
     private IMeasurable getUnit(QuantityDTO dto) {
         switch (dto.getMeasurementType()) {
             case "LengthUnit":
@@ -127,12 +127,11 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         }
     }
 
-    // 🔥 FIXED SAVE (FULL DATA STORED)
     private QuantityMeasurementDTO saveResult(
             QuantityDTO q1,
             QuantityDTO q2,
+            QuantityDTO target,
             double result,
-            IMeasurable resultUnit,
             OperationType operation,
             boolean isError,
             String errorMsg
@@ -150,7 +149,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
         entity.setOperation(operation.name());
         entity.setResultValue(result);
-        entity.setResultUnit(String.valueOf(resultUnit));
+        entity.setResultUnit(target.getUnit());
         entity.setResultMeasurementType(q1.getMeasurementType());
         entity.setError(isError);
         entity.setErrorMessage(errorMsg);
@@ -200,6 +199,10 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         dto.setThatValue(entity.getThatValue());
         dto.setThatUnit(entity.getThatUnit());
         dto.setThatMeasurementType(entity.getThatMeasurementType());
+
+        dto.setResultValue(entity.getThatValue());
+        dto.setResultUnit(entity.getResultUnit());
+        dto.setResultMeasurementType(entity.getThatMeasurementType());
 
         dto.setOperation(entity.getOperation());
         dto.setResultValue(entity.getResultValue());

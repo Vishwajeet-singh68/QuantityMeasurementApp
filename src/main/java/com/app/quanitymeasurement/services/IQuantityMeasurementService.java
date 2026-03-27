@@ -20,17 +20,17 @@ public interface IQuantityMeasurementService {
     );
 
     
-    public QuantityMeasurementDTO add(
-            QuantityDTO thisQuantityDTO,
-            QuantityDTO thatQuantityDTO
-    );
-
-    
 //    public QuantityMeasurementDTO add(
 //            QuantityDTO thisQuantityDTO,
-//            QuantityDTO thatQuantityDTO,
-//            QuantityDTO targetUnit
+//            QuantityDTO thatQuantityDTO
 //    );
+
+    
+    public QuantityMeasurementDTO add(
+            QuantityDTO thisQuantityDTO,
+            QuantityDTO thatQuantityDTO,
+            QuantityDTO targetUnit
+    );
 
     
     public QuantityMeasurementDTO subtract(

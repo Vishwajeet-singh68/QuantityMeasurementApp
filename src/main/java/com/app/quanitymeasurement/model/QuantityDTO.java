@@ -19,7 +19,6 @@ public class QuantityDTO {
     private static final Logger logger =
             Logger.getLogger(QuantityDTO.class.getName());
 
-    // ================= FIELDS =================
 
     @NotNull(message = "Value cannot be null")
     @Schema(example = "10.0")
@@ -53,8 +52,6 @@ public class QuantityDTO {
     )
     private String measurementType;
 
-    // ================= CONSTRUCTORS =================
-
     public QuantityDTO() {}
 
     public QuantityDTO(Double value, String unit, String measurementType) {
@@ -62,8 +59,6 @@ public class QuantityDTO {
         this.unit = unit;
         this.measurementType = measurementType;
     }
-
-    // ================= VALIDATION =================
 
     @AssertTrue(message = "Unit must be valid for the specified measurement type")
     public boolean isValidUnit() {

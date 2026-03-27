@@ -42,9 +42,6 @@ public class QuantityModel<T extends IMeasurable> {
         return Double.compare(thisBase, otherBase) == 0;
     }
 
-    /**
-     * Add two quantities
-     */
     public double add(QuantityModel<?> other, IMeasurable targetUnit) {
 
         double v1 = this.convertTo(targetUnit);
@@ -53,9 +50,6 @@ public class QuantityModel<T extends IMeasurable> {
         return v1 + v2;
     }
 
-    /**
-     * Subtract two quantities
-     */
     public double subtract(QuantityModel<?> other, IMeasurable targetUnit) {
 
         double v1 = this.convertTo(targetUnit);
