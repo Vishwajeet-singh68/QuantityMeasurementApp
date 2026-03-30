@@ -38,8 +38,8 @@ public class QuantityDTO {
 
     @NotNull(message = "Measurement type cannot be null")
     @Pattern(
-            regexp = "LengthUnit|VolumeUnit|WeightUnit|TemperatureUnit",
-            message = "Measurement type must be one of: LengthUnit, VolumeUnit, WeightUnit, TemperatureUnit"
+            regexp = "LengthUnit|VolumeUnit|WeightUnit|Temperature",
+            message = "Measurement type must be one of: LengthUnit, VolumeUnit, WeightUnit, Temperature"
     )
     @Schema(
             example = "LengthUnit",
@@ -47,7 +47,7 @@ public class QuantityDTO {
                     "LengthUnit",
                     "VolumeUnit",
                     "WeightUnit",
-                    "TemperatureUnit"
+                    "Temperature"
             }
     )
     private String measurementType;
@@ -81,7 +81,7 @@ public class QuantityDTO {
                     WeightUnit.valueOf(unit);
                     break;
 
-                case "TemperatureUnit":
+                case "Temperature":
                     Temperature.valueOf(unit);
                     break;
 

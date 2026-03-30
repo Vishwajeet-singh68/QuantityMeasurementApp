@@ -63,9 +63,7 @@ public class QuantityMeasurementDTO {
         return dto;
     }
 
-    /**
-     * Convert DTO to Entity
-     */
+
     public QuantityMeasurementEntity toEntity() {
 
         QuantityMeasurementEntity entity = new QuantityMeasurementEntity();
@@ -91,18 +89,14 @@ public class QuantityMeasurementDTO {
         return entity;
     }
 
-    /**
-     * Convert List<Entity> → List<DTO>
-     */
+
     public static List<QuantityMeasurementDTO> fromList(List<QuantityMeasurementEntity> entities) {
         return entities.stream()
                 .map(QuantityMeasurementDTO::from)
                 .collect(Collectors.toList());
     }
 
-    /**
-     * Convert List<DTO> → List<Entity>
-     */
+
     public static List<QuantityMeasurementEntity> toEntityList(List<QuantityMeasurementDTO> dtos) {
         return dtos.stream()
                 .map(QuantityMeasurementDTO::toEntity)

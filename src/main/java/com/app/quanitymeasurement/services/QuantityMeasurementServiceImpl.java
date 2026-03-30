@@ -44,7 +44,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
             double result = model.convertTo(targetUnit);
 
-            return saveResult(source, target, result, OperationType.CONVERT, false, null);
+            return saveResult(source,source,target, result, OperationType.CONVERT, false, null);
 
         } catch (Exception e) {
             return saveResult(source, target, 0, OperationType.CONVERT, true, e.getMessage());
@@ -154,6 +154,8 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         entity.setError(isError);
         entity.setErrorMessage(errorMsg);
 
+        System.out.println(entity);
+
         repository.save(entity);
 
         return mapToDTO(entity);
@@ -161,7 +163,7 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
 
     private QuantityMeasurementDTO saveResult(
             QuantityDTO q1,
-            QuantityDTO q2,
+            QuantityDTO target,
             double result,
             OperationType operation,
             boolean isError,
@@ -174,11 +176,12 @@ public class QuantityMeasurementServiceImpl implements IQuantityMeasurementServi
         entity.setThisUnit(q1.getUnit());
         entity.setThisMeasurementType(q1.getMeasurementType());
 
-        entity.setThatValue(q2.getValue());
-        entity.setThatUnit(q2.getUnit());
-        entity.setThatMeasurementType(q2.getMeasurementType());
+        entity.setThatMeasurementType(q1.getMeasurementType());
+        entity.setThatUnit(q1.getUnit());
+        entity.setThatValue(q1.getValue());
 
         entity.setOperation(operation.name());
+        entity.setResultUnit(target.getUnit());
         entity.setResultValue(result);
         entity.setResultMeasurementType(q1.getMeasurementType());
         entity.setError(isError);

@@ -23,7 +23,7 @@ public class QuantityMeasurementEntity {
     private Long id;
 
     @Column(name = "this_value", nullable = false)
-    public double thisValue;
+    public Double thisValue;
 
     @Column(name = "this_unit", nullable = false)
     public String thisUnit;
@@ -32,7 +32,7 @@ public class QuantityMeasurementEntity {
     public String thisMeasurementType;
 
     @Column(name = "that_value", nullable = false)
-    public double thatValue;
+    public Double thatValue;
 
     @Column(name = "that_unit", nullable = false)
     public String thatUnit;
@@ -45,7 +45,7 @@ public class QuantityMeasurementEntity {
     public String operation;
 
     @Column(name = "result_value")
-    public double resultValue;
+    public Double resultValue;
 
     @Column(name = "result_unit")
     public String resultUnit;

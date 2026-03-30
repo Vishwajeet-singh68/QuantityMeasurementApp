@@ -22,7 +22,7 @@ public class AuthController {
         String token = authService.login(user);
 
         return ResponseEntity.ok(
-                Map.of("token", token)
+                Map.of("token", token, "username", user.getUsername())
         );
     }
 

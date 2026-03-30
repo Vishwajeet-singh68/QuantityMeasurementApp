@@ -18,7 +18,6 @@ import java.util.List;
 @CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @RequestMapping("/api/quantities")
-@Tag(name = "Quantity Measurements", description = "REST API for quantity measurement operations")
 public class QuantityMeasurementController {
 
     private final IQuantityMeasurementService service;
@@ -38,7 +37,7 @@ public class QuantityMeasurementController {
     }
 
     // ==================== CONVERT ====================
-    @PostMapping("/convert")
+    @PostMapping("/conversion")
     @Operation(summary = "Convert quantity to target unit")
     public ResponseEntity<QuantityMeasurementDTO> performConversion(
             @Valid @RequestBody ConversionDTO input) {
